@@ -34,7 +34,8 @@ export interface ExplicitFoldingConfig {
 	foldBOF?: boolean;
 	foldEOF?: boolean;
 	foldBeforeFirstLine?: boolean;
-	foldLastLine?: boolean | boolean[];
+	foldLastLine?: boolean | boolean[] | string;
+	foldLastLineRegex?: string;
 
 	// nested options
 	descendants?: ExplicitFoldingConfig[];
