@@ -2,34 +2,48 @@
 	"name": "@zokugun/vscode.explicit-folding-api",
 	"description": "API to register rules to the Explicit-Folding extension",
 	"version": "0.2.1",
-	"homepage": "https://github.com/zokugun/vscode-explicit-folding-api",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/zokugun/vscode-explicit-folding-api.git"
-	},
-	"bugs": {
-		"url": "https://github.com/zokugun/vscode-explicit-folding-api/issues"
-	},
 	"author": {
 		"name": "Baptiste Augrain",
 		"email": "daiyam@zokugun.org"
 	},
 	"license": "MIT",
-	"main": "out/index.js",
-	"types": "out/index.d.ts",
+	"homepage": "https://github.com/zokugun/vscode-explicit-folding-api",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/zokugun/vscode-explicit-folding-api.git"
+	},
+	"bugs": {
+		"url": "https://github.com/zokugun/vscode-explicit-folding-api/issues"
+	},
 	"engines": {
 		"vscode": "^1.23.0"
 	},
+	"main": "lib/index.js",
+	"types": "lib/index.d.ts",
+	"scripts": {
+		"commit": "cz",
+		"compile": "tsc -p src",
+		"lint": "xo",
+		"prepare": "husky; fixpack || true",
+		"prepublishOnly": "npm run compile",
+		"release": "release-it",
+		"watch": "tsc -watch -p src"
+	},
 	"dependencies": {},
 	"devDependencies": {
-		"typescript": "^4.2.4"
-	},
-	"scripts": {
-		"prepare": "npm run compile",
-		"compile": "tsc -p ./"
+		"@commitlint/cli": "^19.7.1",
+		"@commitlint/config-conventional": "^19.7.1",
+		"@types/node": "^20.14.8",
+		"commitizen": "^4.3.1",
+		"fixpack": "^4.0.0",
+		"husky": "^9.1.7",
+		"lint-staged": "^15.4.3",
+		"release-it": "^18.1.2",
+		"typescript": "^5.7.3",
+		"xo": "0.60.0"
 	},
 	"keywords": [
-		"vscode",
-		"folding"
+		"folding",
+		"vscode"
 	]
 }
