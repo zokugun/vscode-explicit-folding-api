@@ -1,11 +1,13 @@
 export const explicitFoldingExtensionId = 'zokugun.explicit-folding';
 
-export interface ExplicitFoldingHub {
-	registerFoldingRules(language: string, rules: Array<ExplicitFoldingConfig>): void;
+export type ExplicitFoldingHub = {
+	registerFoldingRules(language: string, rules: ExplicitFoldingConfig[]): void;
 	unregisterFoldingRules(language: string): void;
-}
+};
 
-export interface ExplicitFoldingConfig {
+type FoldLastLineProperty = { foldLastLine?: boolean | string; foldLastLineRegex: undefined } | { foldLastLine: undefined; foldLastLineRegex: string };
+
+export type ExplicitFoldingConfig = {
 	begin?: string;
 	middle?: string;
 	end?: string;
@@ -34,7 +36,6 @@ export interface ExplicitFoldingConfig {
 	foldBOF?: boolean;
 	foldEOF?: boolean;
 	foldBeforeFirstLine?: boolean;
-	foldLastLine?: boolean | boolean[];
 
 	// nested options
 	descendants?: ExplicitFoldingConfig[];
@@ -47,4 +48,4 @@ export interface ExplicitFoldingConfig {
 
 	// include rule
 	include?: string | string[];
-};
+} & FoldLastLineProperty;
