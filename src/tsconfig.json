@@ -9,4 +9,9 @@
 		/* Module Resolution Options */
 		"resolveJsonModule": true,						/* Enable importing .json files */
 	},
+	"references": [
+		{
+			"path": ".."
+		}
+	],
 }
