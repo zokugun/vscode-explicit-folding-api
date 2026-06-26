@@ -1,5 +1,8 @@
 # Changelog
 
+## v0.3.2 | 2026-06-26
+- rename `Rules` as `Rule`
+
 ## v0.3.1 | 2026-06-23
 - update build and dependencies
 
