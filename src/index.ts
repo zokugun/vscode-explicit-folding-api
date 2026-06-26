@@ -17,7 +17,7 @@ type MiddleProperty = { middle: string; middleRegex: undefined } | { middle: und
 type SeparatorProperty = { separator: string; separatorRegex: undefined } | { separator: undefined; separatorRegex: string };
 type WhileProperty = { while: string; whileRegex: undefined } | { while: undefined; whileRegex: string };
 
-export type Rule = {
+type BaseRule = {
 	kind?: 'comment' | 'region';
 	name?: string;
 	include?: string | string[];
@@ -26,7 +26,7 @@ export type Rule = {
 	variables: undefined;
 };
 
-export type BeginContinuationRule = Rule & {
+export type BeginContinuationRule = BaseRule & {
 	foldLastLine?: boolean;
 	foldBeforeFirstLine?: boolean;
 	foldEOF?: boolean;
@@ -34,19 +34,19 @@ export type BeginContinuationRule = Rule & {
 & BeginProperty
 & ContinuationProperty;
 
-export type BeginEndRule = Rule & {
+export type BeginEndRule = BaseRule & {
 	consumeEnd?: boolean;
 	foldLastLine?: boolean;
 	foldBeforeFirstLine?: boolean;
 	foldEOF?: boolean;
-	nested?: boolean | Rules[];
+	nested?: boolean | Rule[];
 	strict?: boolean | string;
 }
 & BeginProperty
 & MiddleProperty
 & EndProperty;
 
-export type BeginWhileRule = Rule & {
+export type BeginWhileRule = BaseRule & {
 	foldBeforeFirstLine?: boolean;
 	foldEOF?: boolean;
 }
@@ -54,33 +54,33 @@ export type BeginWhileRule = Rule & {
 & WhileProperty
 & FoldLastLineProperty;
 
-export type IndentationRule = Rule & {
+export type IndentationRule = BaseRule & {
 	indentation: true;
 	begin?: string;
 	beginRegex?: string;
 	offSide?: boolean;
 	end: undefined;
 	endRegex: undefined;
-	nested?: Rules[];
+	nested?: Rule[];
 };
 
-export type SeparatorRule = Rule & {
+export type SeparatorRule = BaseRule & {
 	foldBOF?: boolean;
 	foldEOF?: boolean;
 	strict?: boolean | string;
-	descendants?: Rules[];
-	nested?: boolean | Rules[];
+	descendants?: Rule[];
+	nested?: boolean | Rule[];
 }
 & SeparatorProperty;
 
-export type WhileRule = Rule & {
+export type WhileRule = BaseRule & {
 	foldLastLine?: boolean;
 	foldBeforeFirstLine?: boolean;
 	foldEOF?: boolean;
 }
 & WhileProperty;
 
-export type UnkownRule = Rule & {
+export type UnkownRule = BaseRule & {
 	begin?: string;
 	middle?: string;
 	end?: string;
@@ -96,6 +96,6 @@ export type UnkownRule = Rule & {
 	indentation?: boolean;
 };
 
-export type Rules = BeginContinuationRule | BeginEndRule | BeginWhileRule | IndentationRule | SeparatorRule | WhileRule;
+export type Rule = BeginContinuationRule | BeginEndRule | BeginWhileRule | IndentationRule | SeparatorRule | WhileRule;
 
-export type Config = Rules | Variables;
+export type Config = Rule | Variables;
